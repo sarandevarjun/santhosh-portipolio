@@ -1,18 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { events } from "@/data/site-content";
+import { events as defaultEvents } from "@/data/site-content";
 import SectionHeading from "@/components/ui/SectionHeading";
 import BannerImagePanel from "@/components/ui/BannerImagePanel";
 
-export default function EventsGallerySection() {
+const defaultSection = {
+  eyebrow: "நிகழ்வுகள்",
+  title: "அரசியல் & மக்கள் நல நிகழ்வுகள்",
+  description: "மாநாடுகள், முகாம்கள், இளைஞர் சந்திப்புகள் — வரவிருக்கும் நிகழ்வுகள்.",
+};
+
+export default function EventsGallerySection({
+  events = defaultEvents,
+  section = defaultSection,
+}) {
   return (
     <section id="events" className="bg-tvk-yellow px-4 py-20 md:px-6">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="நிகழ்வுகள்"
-          title="அரசியல் & மக்கள் நல நிகழ்வுகள்"
-          description="மாநாடுகள், முகாம்கள், இளைஞர் சந்திப்புகள் — வரவிருக்கும் நிகழ்வுகள்."
+          eyebrow={section.eyebrow}
+          title={section.title}
+          description={section.description}
         />
 
         <div className="grid gap-6 md:grid-cols-3">

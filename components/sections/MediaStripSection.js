@@ -1,17 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { mediaBlocks } from "@/data/site-content";
+import { mediaBlocks as defaultBlocks } from "@/data/site-content";
 import MaroonTitleBar from "@/components/ui/MaroonTitleBar";
 import BannerImagePanel from "@/components/ui/BannerImagePanel";
 import Image from "next/image";
 import { siteImages } from "@/data/images";
 
-export default function MediaStripSection() {
+export default function MediaStripSection({
+  blocks = defaultBlocks,
+  closingTitle = "தமிழக வெற்றிக் கழகம் — மக்களோடு, மக்கள் நலனுக்காக",
+}) {
   return (
     <section className="bg-tvk-yellow px-4 py-12 md:px-6">
       <div className="mx-auto max-w-4xl space-y-6">
-        {mediaBlocks.map((block, i) => (
+        {blocks.map((block, i) => (
           <motion.div
             key={block.title}
             initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
@@ -25,7 +28,18 @@ export default function MediaStripSection() {
               </p>
               <p className="mt-1 text-sm text-tvk-dark/70">{block.subtitle}</p>
             </div>
-            {i === 0 ? (
+            {block.image ? (
+              <div className="relative h-32 w-full shrink-0 overflow-hidden rounded-xl sm:w-48">
+                <Image
+                  src={block.image}
+                  alt=""
+                  fill
+                  className="object-cover object-top"
+                  sizes="192px"
+                />
+                <div className="absolute inset-0 bg-tvk-maroon/40" />
+              </div>
+            ) : i === 0 ? (
               <div className="relative h-32 w-full shrink-0 overflow-hidden rounded-xl sm:w-48">
                 <Image
                   src={siteImages.cm}
@@ -44,9 +58,7 @@ export default function MediaStripSection() {
           </motion.div>
         ))}
 
-        <MaroonTitleBar className="mt-10">
-          தமிழக வெற்றிக் கழகம் — மக்களோடு, மக்கள் நலனுக்காக
-        </MaroonTitleBar>
+        <MaroonTitleBar className="mt-10">{closingTitle}</MaroonTitleBar>
       </div>
     </section>
   );

@@ -1,18 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { timeline } from "@/data/site-content";
+import { timeline as defaultTimeline } from "@/data/site-content";
 import SectionHeading from "@/components/ui/SectionHeading";
 import MaroonTitleBar from "@/components/ui/MaroonTitleBar";
 
-export default function AchievementsTimelineSection() {
+const defaultSection = {
+  eyebrow: "சாதனைகள்",
+  title: "ஒன்றிய சாதனைகள் காலவரிசை",
+  description: "மக்கள் நலனில் நாங்கள் நிறைவேற்றிய முக்கிய நிகழ்வுகள்.",
+};
+
+export default function AchievementsTimelineSection({
+  timeline = defaultTimeline,
+  section = defaultSection,
+}) {
   return (
     <section id="achievements" className="bg-tvk-yellow px-4 py-20 md:px-6">
       <div className="mx-auto max-w-4xl">
         <SectionHeading
-          eyebrow="சாதனைகள்"
-          title="ஒன்றிய சாதனைகள் காலவரிசை"
-          description="மக்கள் நலனில் நாங்கள் நிறைவேற்றிய முக்கிய நிகழ்வுகள்."
+          eyebrow={section.eyebrow}
+          title={section.title}
+          description={section.description}
         />
 
         <div className="relative space-y-8 border-l-4 border-tvk-maroon pl-8">

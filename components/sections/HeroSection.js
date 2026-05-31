@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { hero } from "@/data/site-content";
+import { hero as defaultHero } from "@/data/site-content";
 import { siteImages } from "@/data/images";
 import ParticlesBackground from "@/components/ui/ParticlesBackground";
 import BannerBackground from "@/components/ui/BannerBackground";
 
-export default function HeroSection() {
+export default function HeroSection({ hero: heroContent }) {
+  const hero = heroContent ?? defaultHero;
+
   return (
     <BannerBackground
       id="home"

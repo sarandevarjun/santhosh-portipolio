@@ -1,17 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { districts } from "@/data/site-content";
+import { districts as defaultDistricts } from "@/data/site-content";
 import SectionHeading from "@/components/ui/SectionHeading";
 
-export default function DistrictStrengthSection() {
+const defaultSection = {
+  eyebrow: "ஒன்றிய வலிமை",
+  title: "மாவட்ட அளவிலான அமைப்பு சக்தி",
+  description:
+    "தொகைமலை கிழக்கு ஒன்றியம் — கிளைகள், இளைஞர் பிரிவு மற்றும் மக்கள் சேவை வலிமை.",
+};
+
+export default function DistrictStrengthSection({
+  districts = defaultDistricts,
+  section = defaultSection,
+}) {
   return (
     <section className="bg-tvk-yellow px-4 py-20 md:px-6">
       <motion.div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="ஒன்றிய வலிமை"
-          title="மாவட்ட அளவிலான அமைப்பு சக்தி"
-          description="தொகைமலை கிழக்கு ஒன்றியம் — கிளைகள், இளைஞர் பிரிவு மற்றும் மக்கள் சேவை வலிமை."
+          eyebrow={section.eyebrow}
+          title={section.title}
+          description={section.description}
         />
 
         <motion.div className="grid gap-10 lg:grid-cols-2 lg:items-center">
@@ -47,7 +57,7 @@ export default function DistrictStrengthSection() {
             viewport={{ once: true }}
             className="gradient-border flex aspect-video items-center justify-center rounded-2xl bg-tvk-maroon/10"
           >
-            <div className="text-center p-8">
+            <div className="p-8 text-center">
               <p className="text-6xl">🗺️</p>
               <p className="mt-4 text-xl font-bold text-tvk-maroon">
                 தொகைமலை · கிழக்கு ஒன்றியம்

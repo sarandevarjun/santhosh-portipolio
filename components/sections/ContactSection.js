@@ -1,17 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { contact } from "@/data/site-content";
+import { contact as defaultContact } from "@/data/site-content";
 import SectionHeading from "@/components/ui/SectionHeading";
 
-export default function ContactSection() {
+const defaultSection = {
+  eyebrow: "தொடர்புக்கு",
+  title: "அலுவலகம் & தொடர்பு விவரங்கள்",
+  description:
+    "உங்கள் கருத்து, பங்கேற்பு அல்லது உதவிக்காக எங்களைத் தொடர்பு கொள்ளுங்கள்.",
+};
+
+export default function ContactSection({
+  contact = defaultContact,
+  section = defaultSection,
+}) {
   return (
     <section id="contact" className="bg-tvk-yellow px-4 py-20 md:px-6">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="தொடர்புக்கு"
-          title="அலுவலகம் & தொடர்பு விவரங்கள்"
-          description="உங்கள் கருத்து, பங்கேற்பு அல்லது உதவிக்காக எங்களைத் தொடர்பு கொள்ளுங்கள்."
+          eyebrow={section.eyebrow}
+          title={section.title}
+          description={section.description}
         />
 
         <div className="grid gap-8 lg:grid-cols-2">

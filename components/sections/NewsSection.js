@@ -1,17 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { news } from "@/data/site-content";
+import { news as defaultNews } from "@/data/site-content";
 import SectionHeading from "@/components/ui/SectionHeading";
 import MaroonTitleBar from "@/components/ui/MaroonTitleBar";
 
-export default function NewsSection() {
+const defaultSection = {
+  eyebrow: "செய்திகள்",
+  title: "சமீபத்திய செயல்பாடுகள் & செய்தி புதுப்பிப்புகள்",
+};
+
+export default function NewsSection({
+  news = defaultNews,
+  section = defaultSection,
+}) {
   return (
     <section id="news" className="bg-tvk-light px-4 py-20 md:px-6">
       <motion.div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="செய்திகள்"
-          title="சமீபத்திய செயல்பாடுகள் & செய்தி புதுப்பிப்புகள்"
+          eyebrow={section.eyebrow}
+          title={section.title}
         />
 
         <div className="space-y-8">
@@ -31,7 +39,9 @@ export default function NewsSection() {
                 </div>
                 <div>
                   <p className="text-sm font-bold text-tvk-maroon">{item.date}</p>
-                  <p className="mt-2 leading-relaxed text-tvk-dark/80">{item.excerpt}</p>
+                  <p className="mt-2 leading-relaxed text-tvk-dark/80">
+                    {item.excerpt}
+                  </p>
                   <a href="#contact" className="mt-3 inline-block font-bold text-tvk-maroon">
                     மேலும் அறிய →
                   </a>

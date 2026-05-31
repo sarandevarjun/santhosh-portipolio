@@ -1,22 +1,31 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { welfareActivities } from "@/data/site-content";
+import { welfareActivities as defaultActivities } from "@/data/site-content";
 import SectionHeading from "@/components/ui/SectionHeading";
 import GlassCard from "@/components/ui/GlassCard";
 
-export default function PublicWelfareSection() {
+const defaultSection = {
+  eyebrow: "மக்கள் நல பணிகள்",
+  title: "பொது நல செயல்பாடுகள்",
+  description: "மருத்துவம், கல்வி, கிராம வளர்ச்சி — மக்களின் தேவைக்கு ஏற்ப நேரடிச் சேவை.",
+};
+
+export default function PublicWelfareSection({
+  activities = defaultActivities,
+  section = defaultSection,
+}) {
   return (
     <section className="bg-tvk-light px-4 py-20 md:px-6">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="மக்கள் நல பணிகள்"
-          title="பொது நல செயல்பாடுகள்"
-          description="மருத்துவம், கல்வி, கிராம வளர்ச்சி — மக்களின் தேவைக்கு ஏற்ப நேரடிச் சேவை."
+          eyebrow={section.eyebrow}
+          title={section.title}
+          description={section.description}
         />
 
         <div className="grid gap-6 md:grid-cols-3">
-          {welfareActivities.map((item, i) => (
+          {activities.map((item, i) => (
             <GlassCard key={item.title} delay={i * 0.1}>
               <span className="text-sm font-bold text-tvk-maroon">{item.tag}</span>
               <h3 className="mt-2 text-xl font-bold">{item.title}</h3>

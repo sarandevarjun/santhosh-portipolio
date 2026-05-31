@@ -1,10 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { contact as defaultContact } from "@/data/site-content";
 import SectionHeading from "@/components/ui/SectionHeading";
 import BannerBackground from "@/components/ui/BannerBackground";
 
-export default function JoinFormSection() {
+const defaultSection = {
+  eyebrow: "சேருங்கள்",
+  title: "மக்கள் நலனில் உங்கள் பங்களிப்பு",
+  description:
+    "உறுப்பினராகப் பதிவு செய்து, தொகைமலை கிழக்கு ஒன்றியத்தின் வளர்ச்சியில் பங்கேற்குங்கள்.",
+  phone: defaultContact.phone,
+};
+
+export default function JoinFormSection({ section = defaultSection }) {
   return (
     <BannerBackground className="px-4 py-20 text-white md:px-6" tint="strong">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
@@ -12,11 +21,13 @@ export default function JoinFormSection() {
           <SectionHeading
             light
             center={false}
-            eyebrow="சேருங்கள்"
-            title="மக்கள் நலனில் உங்கள் பங்களிப்பு"
-            description="உறுப்பினராகப் பதிவு செய்து, தொகைமலை கிழக்கு ஒன்றியத்தின் வளர்ச்சியில் பங்கேற்குங்கள்."
+            eyebrow={section.eyebrow}
+            title={section.title}
+            description={section.description}
           />
-          <p className="text-2xl font-bold text-tvk-yellow">அழைப்பு: +91 97876 73546</p>
+          <p className="text-2xl font-bold text-tvk-yellow">
+            அழைப்பு: {section.phone}
+          </p>
         </div>
 
         <motion.form
