@@ -1,9 +1,7 @@
 "use client";
-
 import { testimonials as defaultTestimonials } from "@/data/site-content";
 import SectionHeading from "@/components/ui/SectionHeading";
-import GlassCard from "@/components/ui/GlassCard";
-import BannerBackground from "@/components/ui/BannerBackground";
+import { motion } from "framer-motion";
 
 const defaultSection = {
   eyebrow: "மக்கள் கருத்து",
@@ -16,7 +14,8 @@ export default function TestimonialsSection({
   section = defaultSection,
 }) {
   return (
-    <BannerBackground className="px-4 py-20 md:px-6" tint="medium">
+    <section id="testimonials" className="px-4 py-20 md:px-6"
+      style={{ background: "linear-gradient(135deg, #990500 0%, #7a0400 50%, #990500 100%)" }}>
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           light
@@ -24,26 +23,41 @@ export default function TestimonialsSection({
           title={section.title}
           description={section.description}
         />
-
         <div className="grid gap-6 md:grid-cols-3">
           {testimonials.map((t, i) => (
-            <GlassCard key={t.name} delay={i * 0.1} dark>
-              <p className="text-lg leading-relaxed text-white/90">
-                &ldquo;{t.quote}&rdquo;
+            <motion.div
+              key={t.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="rounded-2xl p-6"
+              style={{
+                background: "rgba(255,221,0,0.08)",
+                border: "1px solid rgba(255,221,0,0.3)",
+                backdropFilter: "blur(8px)",
+              }}
+            >
+              {/* Quote mark */}
+              <div className="text-4xl font-black mb-3" style={{ color: "#FFDD00", opacity: 0.6 }}>"</div>
+              <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.9)" }}>
+                {t.quote}
               </p>
-              <div className="mt-6 flex items-center gap-3">
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-tvk-maroon text-lg font-bold text-tvk-yellow">
+              <div className="flex items-center gap-3 pt-4"
+                style={{ borderTop: "1px solid rgba(255,221,0,0.2)" }}>
+                <div className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0"
+                  style={{ background: "#FFDD00", color: "#990500" }}>
                   {t.name.charAt(0)}
-                </span>
+                </div>
                 <div>
-                  <p className="font-bold text-tvk-yellow">{t.name}</p>
-                  <p className="text-sm text-white/60">{t.org}</p>
+                  <p className="font-bold" style={{ color: "#FFDD00" }}>{t.name}</p>
+                  <p className="text-sm" style={{ color: "rgba(255,221,0,0.6)" }}>{t.org}</p>
                 </div>
               </div>
-            </GlassCard>
+            </motion.div>
           ))}
         </div>
       </div>
-    </BannerBackground>
+    </section>
   );
 }
