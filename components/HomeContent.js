@@ -14,7 +14,7 @@ import VolunteerProcessSection from "@/components/sections/VolunteerProcessSecti
 import JoinFormSection from "@/components/sections/JoinFormSection";
 import LeadershipSection from "@/components/sections/LeadershipSection";
 import EventsGallerySection from "@/components/sections/EventsGallerySection";
-import MediaStripSection from "@/components/sections/MediaStripSection";
+import EventPhotosGallery from "@/components/sections/EventPhotosGallery";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import VolunteerCtaSection from "@/components/sections/VolunteerCtaSection";
 import NewsSection from "@/components/sections/NewsSection";
@@ -79,10 +79,7 @@ export default function HomeContent({
           section={sections.leadership}
         />
         <EventsGallerySection events={events} section={sections.events} />
-        <MediaStripSection
-          blocks={mediaBlocks}
-          closingTitle={mediaClosingTitle}
-        />
+        <EventPhotosGallery news={news} closingTitle={mediaClosingTitle} />
         <TestimonialsSection
           testimonials={testimonials}
           section={sections.testimonials}
