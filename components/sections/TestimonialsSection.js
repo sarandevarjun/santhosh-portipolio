@@ -39,7 +39,7 @@ export default function TestimonialsSection({
               }}
             >
               {/* Quote mark */}
-              <div className="text-4xl font-black mb-3" style={{ color: "#FFDD00", opacity: 0.6 }}>"</div>
+              <div className="text-4xl font-black mb-3" style={{ color: "#FFDD00", opacity: 0.6 }}>&ldquo;</div>
               <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.9)" }}>
                 {t.quote}
               </p>
