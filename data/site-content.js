@@ -3,7 +3,7 @@ export const navLinks = [
   { label: "எங்களை பற்றி", href: "#about" },
   { label: "மக்கள் சேவை", href: "#welfare" },
   { label: "சாதனைகள்", href: "#achievements" },
-  { label: "நிகழ்வுகள்", href: "#events" },
+  { label: "நிகழ்வுகள்", href: "/events" },
   { label: "செய்திகள்", href: "#news" },
   { label: "தொடர்புக்கு", href: "#contact" },
 ];
