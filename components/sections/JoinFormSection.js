@@ -1,18 +1,9 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { contact as defaultContact } from "@/data/site-content";
 import SectionHeading from "@/components/ui/SectionHeading";
-import BannerBackground from "@/components/ui/BannerBackground";
 
-const defaultSection = {
-  eyebrow: "சேருங்கள்",
-  title: "மக்கள் நலனில் உங்கள் பங்களிப்பு",
-  description: "உறுப்பினராகப் பதிவு செய்து, தொகைமலை கிழக்கு ஒன்றியத்தின் வளர்ச்சியில் பங்கேற்குங்கள்.",
-  phone: defaultContact.phone,
-};
-
-const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "https://tvk-backend-production.up.railway.app";
+const PHONE = "+91 97876 73546";
 
 const WARDS = [
   { id: 12, name: "குளித்தலை நகர் வார்டு 1" },
@@ -22,12 +13,18 @@ const WARDS = [
   { id: 20, name: "நொச்சியம் வார்டு" },
 ];
 
+const defaultSection = {
+  eyebrow: "சேருங்கள்",
+  title: "மக்கள் நலனில் உங்கள் பங்களிப்பு",
+  description: "உறுப்பினராகப் பதிவு செய்து, தொகைமலை கிழக்கு ஒன்றியத்தின் வளர்ச்சியில் பங்கேற்குங்கள்.",
+};
+
 export default function JoinFormSection({ section = defaultSection }) {
   const [form, setForm] = useState({
     name: "", phone: "", age: "", profession: "",
     areaName: "", wardId: "", interest: "",
   });
-  const [status, setStatus]   = useState("idle"); // idle | loading | success | error
+  const [status,  setStatus]  = useState("idle");
   const [message, setMessage] = useState("");
 
   const handleChange = (e) =>
@@ -68,7 +65,7 @@ export default function JoinFormSection({ section = defaultSection }) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "பதிவு தோல்வியடைந்தது");
       setStatus("success");
-      setMessage("🎉 உங்கள் பதிவு வெற்றிகரமாக சமர்பிக்கப்பட்டது! நிர்வாகி விரைவில் தொடர்பு கொள்வார்.");
+      setMessage("உங்கள் பதிவு வெற்றிகரமாக சமர்பிக்கப்பட்டது! நிர்வாகி விரைவில் தொடர்பு கொள்வார்.");
       setForm({ name: "", phone: "", age: "", profession: "", areaName: "", wardId: "", interest: "" });
     } catch (err) {
       setStatus("error");
@@ -77,164 +74,163 @@ export default function JoinFormSection({ section = defaultSection }) {
   };
 
   return (
-    <BannerBackground className="px-4 py-20 text-white md:px-6" tint="strong">
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
-        <div>
-          <SectionHeading
-            light center={false}
-            eyebrow={section.eyebrow}
-            title={section.title}
-            description={section.description}
-          />
-          <p className="text-2xl font-bold text-tvk-yellow mt-4">
-            அழைப்பு: {section.phone}
-          </p>
-          <div className="mt-6 space-y-3">
-            {[
-              { icon: "✅", text: "இலவச உறுப்பினர் பதிவு" },
-              { icon: "📱", text: "பதிவு செய்த பிறகு நிர்வாகி தொடர்பு கொள்வார்" },
-              { icon: "🔒", text: "உங்கள் தகவல்கள் பாதுகாப்பானது" },
-              { icon: "🌐", text: "தோகைமலை கிழக்கு ஒன்றியம் · கரூர் மாவட்டம்" },
-            ].map(({ icon, text }) => (
-              <div key={text} className="flex items-center gap-3">
-                <span className="text-xl">{icon}</span>
-                <span className="text-white/80 text-sm">{text}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+    <section className="px-4 py-20 md:px-6" style={{ background: "#FFF8E1" }}>
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
 
-        <motion.form
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          onSubmit={handleSubmit}
-          className="glass-card rounded-2xl p-6 md:p-8 space-y-4"
-        >
-          <h3 className="text-xl font-bold text-tvk-yellow text-center mb-2">
-            உறுப்பினர் பதிவு படிவம்
-          </h3>
-
-          {/* Name + Phone */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label className="text-xs text-white/70 mb-1 block">முழு பெயர் *</label>
-              <input
-                type="text" name="name" value={form.name}
-                onChange={handleChange} required
-                placeholder="உங்கள் முழு பெயர்"
-                className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-tvk-yellow"
-              />
-            </div>
-            <div>
-              <label className="text-xs text-white/70 mb-1 block">தொலைபேசி *</label>
-              <input
-                type="tel" name="phone" value={form.phone}
-                onChange={handleChange} required maxLength={10}
-                placeholder="10 இலக்க எண்"
-                className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-tvk-yellow"
-              />
-            </div>
-          </div>
-
-          {/* Age + Profession */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label className="text-xs text-white/70 mb-1 block">வயது</label>
-              <input
-                type="number" name="age" value={form.age}
-                onChange={handleChange} min={18} max={100}
-                placeholder="வயது"
-                className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-tvk-yellow"
-              />
-            </div>
-            <div>
-              <label className="text-xs text-white/70 mb-1 block">தொழில்</label>
-              <input
-                type="text" name="profession" value={form.profession}
-                onChange={handleChange}
-                placeholder="விவசாயி / ஆசிரியர் / வணிகர்..."
-                className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-tvk-yellow"
-              />
-            </div>
-          </div>
-
-          {/* Area */}
+          {/* Left info */}
           <div>
-            <label className="text-xs text-white/70 mb-1 block">கிராமம் / பகுதி</label>
-            <input
-              type="text" name="areaName" value={form.areaName}
-              onChange={handleChange}
-              placeholder="உங்கள் கிராமம் அல்லது பகுதி பெயர்"
-              className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-tvk-yellow"
+            <SectionHeading
+              center={false}
+              eyebrow={section.eyebrow}
+              title={section.title}
+              description={section.description}
             />
-          </div>
-
-          {/* Ward */}
-          <div>
-            <label className="text-xs text-white/70 mb-1 block">வார்டு தேர்வு</label>
-            <select
-              name="wardId" value={form.wardId}
-              onChange={handleChange}
-              className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white focus:outline-none focus:border-tvk-yellow"
-            >
-              <option value="">வார்டு தேர்வு செய்யவும்</option>
-              {WARDS.map(w => (
-                <option key={w.id} value={w.id} className="text-black">{w.name}</option>
+            <a href={`tel:${PHONE}`}
+              className="inline-flex items-center gap-2 mt-5 text-2xl font-black"
+              style={{ color: "#990500" }}>
+              📞 {PHONE}
+            </a>
+            <div className="mt-6 space-y-3">
+              {[
+                { icon: "✅", text: "இலவச உறுப்பினர் பதிவு" },
+                { icon: "📱", text: "பதிவு செய்த பிறகு நிர்வாகி தொடர்பு கொள்வார்" },
+                { icon: "🔒", text: "உங்கள் தகவல்கள் பாதுகாப்பானது" },
+                { icon: "🌐", text: "தோகைமலை கிழக்கு ஒன்றியம் · கரூர் மாவட்டம்" },
+              ].map(({ icon, text }) => (
+                <div key={text} className="flex items-center gap-3">
+                  <span className="text-xl">{icon}</span>
+                  <span className="text-sm font-medium" style={{ color: "#333" }}>{text}</span>
+                </div>
               ))}
-            </select>
+            </div>
           </div>
 
-          {/* Interest */}
-          <div>
-            <label className="text-xs text-white/70 mb-1 block">பங்கேற்பு ஆர்வம்</label>
-            <select
-              name="interest" value={form.interest}
-              onChange={handleChange}
-              className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white focus:outline-none focus:border-tvk-yellow"
-            >
-              <option value="">பங்கேற்பு வகை தேர்வு</option>
-              <option value="உறுப்பினர்" className="text-black">உறுப்பினர்</option>
-              <option value="தன்னார்வலர்" className="text-black">தன்னார்வலர்</option>
-              <option value="இளைஞர் பிரிவு" className="text-black">இளைஞர் பிரிவு</option>
-              <option value="மகளிரணி" className="text-black">மகளிரணி</option>
-              <option value="பூத் கமிட்டி" className="text-black">பூத் கமிட்டி</option>
-            </select>
-          </div>
-
-          {/* Status message */}
-          {status === "error" && (
-            <div className="rounded-lg px-4 py-3 text-sm font-medium"
-              style={{ background: "rgba(153,5,0,0.4)", border: "1px solid rgba(255,100,100,0.5)", color: "#ffaaaa" }}>
-              ❌ {message}
-            </div>
-          )}
-          {status === "success" && (
-            <div className="rounded-lg px-4 py-3 text-sm font-medium"
-              style={{ background: "rgba(0,100,0,0.4)", border: "1px solid rgba(100,255,100,0.5)", color: "#aaffaa" }}>
-              {message}
-            </div>
-          )}
-
-          <motion.button
-            type="submit"
-            disabled={status === "loading"}
-            whileHover={{ scale: status === "loading" ? 1 : 1.02 }}
-            className="w-full rounded-full py-3.5 font-bold text-tvk-dark flex items-center justify-center gap-2"
-            style={{ background: status === "loading" ? "#c8910a" : "#FFDD00" }}
+          {/* Right form */}
+          <motion.form
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            onSubmit={handleSubmit}
+            className="rounded-2xl p-6 md:p-8 space-y-4"
+            style={{ background: "white", border: "2px solid #990500" }}
           >
-            {status === "loading" ? (
-              <><span className="animate-spin">⏳</span> பதிவு செய்கிறது...</>
-            ) : (
-              "✅ பதிவு செய்யுங்கள்"
-            )}
-          </motion.button>
+            <h3 className="text-xl font-bold text-center mb-2" style={{ color: "#990500" }}>
+              உறுப்பினர் பதிவு படிவம்
+            </h3>
 
-          <p className="text-xs text-white/50 text-center">
-            பதிவு செய்த பிறகு நிர்வாகி விரைவில் தொடர்பு கொள்வார்
-          </p>
-        </motion.form>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="text-xs font-semibold block mb-1" style={{ color: "#666" }}>
+                  முழு பெயர் *
+                </label>
+                <input type="text" name="name" value={form.name}
+                  onChange={handleChange} required
+                  placeholder="உங்கள் முழு பெயர்"
+                  className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none"
+                  style={{ border: "2px solid #FFDD00", background: "#FFFDE7" }} />
+              </div>
+              <div>
+                <label className="text-xs font-semibold block mb-1" style={{ color: "#666" }}>
+                  தொலைபேசி *
+                </label>
+                <input type="tel" name="phone" value={form.phone}
+                  onChange={handleChange} required maxLength={10}
+                  placeholder="10 இலக்க எண்"
+                  className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none"
+                  style={{ border: "2px solid #FFDD00", background: "#FFFDE7" }} />
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="text-xs font-semibold block mb-1" style={{ color: "#666" }}>வயது</label>
+                <input type="number" name="age" value={form.age}
+                  onChange={handleChange} min={18} max={100}
+                  placeholder="வயது"
+                  className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none"
+                  style={{ border: "2px solid #FFDD00", background: "#FFFDE7" }} />
+              </div>
+              <div>
+                <label className="text-xs font-semibold block mb-1" style={{ color: "#666" }}>தொழில்</label>
+                <input type="text" name="profession" value={form.profession}
+                  onChange={handleChange}
+                  placeholder="விவசாயி / ஆசிரியர்..."
+                  className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none"
+                  style={{ border: "2px solid #FFDD00", background: "#FFFDE7" }} />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-xs font-semibold block mb-1" style={{ color: "#666" }}>
+                கிராமம் / பகுதி
+              </label>
+              <input type="text" name="areaName" value={form.areaName}
+                onChange={handleChange}
+                placeholder="உங்கள் கிராமம் அல்லது பகுதி பெயர்"
+                className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none"
+                style={{ border: "2px solid #FFDD00", background: "#FFFDE7" }} />
+            </div>
+
+            <div>
+              <label className="text-xs font-semibold block mb-1" style={{ color: "#666" }}>
+                வார்டு தேர்வு
+              </label>
+              <select name="wardId" value={form.wardId} onChange={handleChange}
+                className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none"
+                style={{ border: "2px solid #FFDD00", background: "#FFFDE7" }}>
+                <option value="">வார்டு தேர்வு செய்யவும்</option>
+                {WARDS.map(w => (
+                  <option key={w.id} value={w.id}>{w.name}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="text-xs font-semibold block mb-1" style={{ color: "#666" }}>
+                பங்கேற்பு ஆர்வம்
+              </label>
+              <select name="interest" value={form.interest} onChange={handleChange}
+                className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none"
+                style={{ border: "2px solid #FFDD00", background: "#FFFDE7" }}>
+                <option value="">பங்கேற்பு வகை தேர்வு</option>
+                <option value="உறுப்பினர்">உறுப்பினர்</option>
+                <option value="தன்னார்வலர்">தன்னார்வலர்</option>
+                <option value="இளைஞர் பிரிவு">இளைஞர் பிரிவு</option>
+                <option value="மகளிரணி">மகளிரணி</option>
+                <option value="பூத் கமிட்டி">பூத் கமிட்டி</option>
+              </select>
+            </div>
+
+            {status === "error" && (
+              <div className="rounded-xl px-4 py-3 text-sm font-medium"
+                style={{ background: "#FFF0F0", border: "1px solid #990500", color: "#990500" }}>
+                ❌ {message}
+              </div>
+            )}
+            {status === "success" && (
+              <div className="rounded-xl px-4 py-3 text-sm font-medium"
+                style={{ background: "#F0FFF0", border: "1px solid #16a34a", color: "#15803d" }}>
+                🎉 {message}
+              </div>
+            )}
+
+            <motion.button
+              type="submit"
+              disabled={status === "loading"}
+              whileHover={{ scale: status === "loading" ? 1 : 1.02 }}
+              className="w-full rounded-full py-3.5 font-bold text-white flex items-center justify-center gap-2"
+              style={{ background: status === "loading" ? "#C8910A" : "#990500" }}
+            >
+              {status === "loading" ? "⏳ பதிவு செய்கிறது..." : "✅ பதிவு செய்யுங்கள்"}
+            </motion.button>
+
+            <p className="text-xs text-center" style={{ color: "#888" }}>
+              பதிவு செய்த பிறகு நிர்வாகி விரைவில் தொடர்பு கொள்வார்
+            </p>
+          </motion.form>
+        </div>
       </div>
-    </BannerBackground>
+    </section>
   );
 }
