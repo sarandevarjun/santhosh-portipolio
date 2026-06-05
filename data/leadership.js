@@ -24,7 +24,7 @@ export const defaultLeadershipMembers = [
   {
     name: "திரு. சந்தோஷ் குமார்",
     nameEn: "Santhosh Kumar",
-    role: "தொகைமலை கிழக்கு ஒன்றிய தலைமை பொறுப்பாளர்",
+    role: "தோகைமலை கிழக்கு ஒன்றிய தலைமை பொறுப்பாளர்",
     designation: "Thogaimalai East Union Chief Coordinator",
     description:
       "இளைஞர் முன்னெடுப்பு மற்றும் கிராம வளர்ச்சியில் முன்னணியில் செயல்படும் பொறுப்பாளர்.",

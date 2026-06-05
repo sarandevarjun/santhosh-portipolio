@@ -8,7 +8,7 @@ const defaultSection = {
   eyebrow: "ஒன்றிய வலிமை",
   title: "மாவட்ட அளவிலான அமைப்பு சக்தி",
   description:
-    "தொகைமலை கிழக்கு ஒன்றியம் — கிளைகள், இளைஞர் பிரிவு மற்றும் மக்கள் சேவை வலிமை.",
+    "தோகைமலை கிழக்கு ஒன்றியம் — கிளைகள், இளைஞர் பிரிவு மற்றும் மக்கள் சேவை வலிமை.",
 };
 
 export default function DistrictStrengthSection({
@@ -60,7 +60,7 @@ export default function DistrictStrengthSection({
             <div className="p-8 text-center">
               <p className="text-6xl">🗺️</p>
               <p className="mt-4 text-xl font-bold text-tvk-maroon">
-                தொகைமலை · கிழக்கு ஒன்றியம்
+                தோகைமலை · கிழக்கு ஒன்றியம்
               </p>
               <p className="mt-2 text-sm text-tvk-dark/70">
                 மாவட்ட வரைபடம் / கிளை வலிமை (விரைவில்)

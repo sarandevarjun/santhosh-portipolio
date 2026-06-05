@@ -16,7 +16,7 @@ const WARDS = [
 const defaultSection = {
   eyebrow: "சேருங்கள்",
   title: "மக்கள் நலனில் உங்கள் பங்களிப்பு",
-  description: "உறுப்பினராகப் பதிவு செய்து, தொகைமலை கிழக்கு ஒன்றியத்தின் வளர்ச்சியில் பங்கேற்குங்கள்.",
+  description: "உறுப்பினராகப் பதிவு செய்து, தோகைமலை கிழக்கு ஒன்றியத்தின் வளர்ச்சியில் பங்கேற்குங்கள்.",
 };
 
 export default function JoinFormSection({ section = defaultSection }) {
