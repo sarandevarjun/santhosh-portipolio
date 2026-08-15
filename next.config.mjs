@@ -5,6 +5,9 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'res.cloudinary.com' },
       { protocol: 'https', hostname: 'tvk-backend-production.up.railway.app' },
+      { protocol: 'https', hostname: 'tvk-backend-bere.onrender.com' },
+      { protocol: 'http',  hostname: 'localhost' },
+      { protocol: 'http',  hostname: '152.228.227.51' },
     ],
   },
 };

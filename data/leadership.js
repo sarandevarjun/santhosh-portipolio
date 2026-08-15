@@ -28,7 +28,7 @@ export const defaultLeadershipMembers = [
     designation: "Thogaimalai East Union Chief Coordinator",
     description:
       "இளைஞர் முன்னெடுப்பு மற்றும் கிராம வளர்ச்சியில் முன்னணியில் செயல்படும் பொறுப்பாளர்.",
-    image: "/images/union-leaders/santhosh-thogaimalai-east-union-leader.jpeg",
+    image: "https://res.cloudinary.com/dhdsiatfx/image/upload/v1786506454/Santhosh-anna-new_ecvj3r.jpg",
     isGeneralSecretary: false,
   },
 ];
