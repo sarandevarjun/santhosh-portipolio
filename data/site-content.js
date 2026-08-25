@@ -1,11 +1,9 @@
 export const navLinks = [
-  { label: "முகப்பு", href: "#home" },
-  { label: "எங்களை பற்றி", href: "#about" },
-  { label: "மக்கள் சேவை", href: "#welfare" },
-  { label: "சாதனைகள்", href: "#achievements" },
-  { label: "நிகழ்வுகள்", href: "/events" },
-  { label: "செய்திகள்", href: "#news" },
-  { label: "தொடர்புக்கு", href: "#contact" },
+  { label: "முகப்பு",       href: "/" },
+  { label: "எங்களை பற்றி",  href: "/about" },
+  { label: "நிகழ்வுகள்",    href: "/events" },
+  { label: "நல திட்டங்கள்", href: "/schemes" },
+  { label: "தொடர்புக்கு",   href: "/contact" },
 ];
 
 export const hero = {
