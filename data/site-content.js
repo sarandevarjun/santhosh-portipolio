@@ -1,9 +1,9 @@
 export const navLinks = [
-  { label: "முகப்பு",       href: "/" },
-  { label: "எங்களை பற்றி",  href: "/about" },
-  { label: "நிகழ்வுகள்",    href: "/events" },
-  { label: "நல திட்டங்கள்", href: "/schemes" },
-  { label: "தொடர்புக்கு",   href: "/contact" },
+  { label: "முகப்பு",       labelEn: "Home",    href: "/" },
+  { label: "எங்களை பற்றி",  labelEn: "About",   href: "/about" },
+  { label: "நிகழ்வுகள்",    labelEn: "Events",  href: "/events" },
+  { label: "நல திட்டங்கள்", labelEn: "Schemes", href: "/schemes" },
+  { label: "தொடர்புக்கு",   labelEn: "Contact", href: "/contact" },
 ];
 
 export const hero = {
