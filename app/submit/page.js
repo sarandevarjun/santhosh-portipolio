@@ -61,22 +61,16 @@ export default function SubmitPage() {
       const ticket  = `TVK-${Date.now().toString().slice(-6)}`;
 
       // Post to Strapi issues
-      const res = await fetch(`${STRAPI_URL}/api/issues`, {
+      const res = await fetch('/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          data: {
-            title:        `${cat?.en||form.category} - ${form.area}`,
-            description:  `பெயர்: ${form.name}\nதொலைபேசி: ${form.phone}\nபகுதி: ${form.area}\nமுகவரி: ${form.address}\n\nபிரச்சினை விவரம்:\n${form.description}`,
-            reportedBy:   form.name,
-            contactPhone: form.phone,
-            category:     form.category,
-            wardName:     form.area,
-            issueStatus:  'open',
-            priority:     'medium',
-            source:       'public_form',
-            ticketId:     ticket,
-          }
+          name:        form.name,
+          phone:       form.phone,
+          category:    form.category,
+          area:        form.area,
+          address:     form.address,
+          description: form.description,
         }),
       });
 
