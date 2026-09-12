@@ -1,4 +1,4 @@
-const STRAPI_URL   = process.env.STRAPI_URL || '';
+const STRAPI_URL   = process.env.NEXT_PUBLIC_STRAPI_URL || '';
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN || '';
 
 const SANTHOSH_PUSH_TOKEN = 'ExponentPushToken[uXCIIVEQV7933CAU-mek8e]';
